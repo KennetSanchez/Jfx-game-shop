@@ -3,10 +3,12 @@ package model;
 public class Game {
     private String name;
     private String code;
+    private double price;
 
-    public Game(String name,String code){
+    public Game(String name,String code,double price){
         this.name=name;
         this.code=code;
+        this.price=price;
     }
 
     public String getName() {
