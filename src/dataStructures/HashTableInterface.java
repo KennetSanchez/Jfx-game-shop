@@ -1,4 +1,4 @@
-package model;
+package dataStructures;
 
 public interface HashTableInterface<K,V>{
     public void insert(K key,V value);
