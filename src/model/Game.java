@@ -1,22 +1,14 @@
 package model;
 
 public class Game {
-    private String name;
     private String code;
     private double price;
+    private int quantity;
 
-    public Game(String name,String code,double price){
-        this.name=name;
+    public Game(String code,double price,int quantity){
         this.code=code;
         this.price=price;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        this.quantity=quantity;
     }
 
     public String getCode() {
@@ -25,5 +17,21 @@ public class Game {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

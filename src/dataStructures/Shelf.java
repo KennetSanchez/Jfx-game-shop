@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import model.Game;
 
-public class Shelve<K,V> implements HashTableInterface<K,V>{
+public class Shelf<K,V> implements HashTableInterface<K,V>{
     private String identifier;
     private int m;
     private ArrayList<GameSpace<K,V>> table;
@@ -13,7 +13,7 @@ public class Shelve<K,V> implements HashTableInterface<K,V>{
     private GameSpace<K,V> deleted;
 
 
-    public Shelve(String identifier,int m,NearestPrimeFinder finder){
+    public Shelf(String identifier,int m,NearestPrimeFinder finder){
         this.identifier=identifier;
         this.m=m;
         size=0;
@@ -34,9 +34,6 @@ public class Shelve<K,V> implements HashTableInterface<K,V>{
         return(prime-(key%prime));
     }
 
-    public void  addGames(Game game){
-
-    }
 
 
     @Override
@@ -57,7 +54,16 @@ public class Shelve<K,V> implements HashTableInterface<K,V>{
 
     @Override
     public V search(K key) {
-        return null;
+        int index1 = hash1(key.hashCode());
+        int index2 = hash2(key.hashCode());
+        int i = 0;
+        while (table.get((index1 + i * index2) % m).hashCode() != key.hashCode()) {
+            if (table.get((index1 + i * index2) % m).hashCode() == -1) {
+                return null;
+            }
+            i++;
+        }
+        return (table.get((index1 + i * index2) % m).getValue());
     }
 
     @Override
