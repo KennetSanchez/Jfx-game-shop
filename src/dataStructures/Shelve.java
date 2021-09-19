@@ -1,10 +1,11 @@
-package model;
+package dataStructures;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
+import model.Game;
 
 public class Shelve<K,V> implements HashTableInterface<K,V>{
-    private char identifier;
+    private String identifier;
     private int m;
     private ArrayList<GameSpace<K,V>> table;
     private int prime;
@@ -12,7 +13,7 @@ public class Shelve<K,V> implements HashTableInterface<K,V>{
     private GameSpace<K,V> deleted;
 
 
-    public Shelve(char identifier,int m,NearestPrimeFinder finder){
+    public Shelve(String identifier,int m,NearestPrimeFinder finder){
         this.identifier=identifier;
         this.m=m;
         size=0;
