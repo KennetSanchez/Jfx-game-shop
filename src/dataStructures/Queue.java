@@ -13,10 +13,7 @@ public class Queue<T> implements QueueInterface<T> {
     }
     @Override
     public boolean isEmpty() {
-        if (firstClient==null){
-            return true;
-        }
-        return false;
+        return firstClient == null;
     }
 
     @Override
@@ -30,8 +27,33 @@ public class Queue<T> implements QueueInterface<T> {
     }
 
     @Override
-    public boolean enqueue() {
-        return false;
+    public void enqueue(Node<T> e) {
+        if(isEmpty()){
+            firstClient= e;
+            firstClient.setNext(null);
+            firstClient.setPrevious(null);
+            lastClient=e;
+            queueAmount=queueAmount+1;
+        }
+        else{
+            if(queueAmount==1){
+                firstClient.setNext(e);
+                lastClient=e;
+                lastClient.setPrevious(firstClient);
+                queueAmount++;
+            }
+            else{
+                Node<T> indicator= firstClient;
+                while(indicator.getNext()==null){
+                    indicator=indicator.getNext();
+                }
+                indicator.setNext(e);
+                lastClient=e;
+                lastClient.setPrevious(indicator);
+                queueAmount++;
+
+            }
+        }
     }
 
 }
