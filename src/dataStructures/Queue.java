@@ -16,18 +16,22 @@ public class Queue<T> implements QueueInterface<T> {
         return firstClient == null;
     }
 
+
+
     @Override
-    public T front() {
-        return null;
+    public Node<T> poll() {
+        if(!isEmpty()){
+           Node<T> temp=firstClient;
+           firstClient=firstClient.getNext();
+           return temp;
+        }
+        else{
+            return null;
+        }
     }
 
     @Override
-    public T dequeue() {
-        return null;
-    }
-
-    @Override
-    public void enqueue(Node<T> e) {
+    public void offer(Node<T> e) {
         if(isEmpty()){
             firstClient= e;
             firstClient.setNext(null);
