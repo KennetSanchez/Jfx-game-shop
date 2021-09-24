@@ -16,8 +16,6 @@ public class Queue<T> implements QueueInterface<T> {
         return firstClient == null;
     }
 
-
-
     @Override
     public Node<T> poll() {
         if(!isEmpty()){
