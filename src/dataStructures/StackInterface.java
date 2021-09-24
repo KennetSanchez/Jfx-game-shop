@@ -3,7 +3,7 @@ package dataStructures;
 public interface StackInterface<T>{
 
     public boolean isEmpty();
-    public Node<T> pop();
-    public Node<T> peek();
-    public void push(Node<T> e);
+    public T pop();
+    public T peek();
+    public void push(T e);
 }

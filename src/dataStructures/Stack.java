@@ -18,13 +18,13 @@ public class Stack<T> implements StackInterface<T> {
     }
 
     @Override
-    public Node<T> pop() {
+    public T pop() {
         if(!(isEmpty())){
             Node<T> temp=topNode;
             topNode=topNode.getNext();
             topNode.setPrevious(null);
             stackAmount--;
-            return temp;
+            return temp.getElement();
         }
         else{
             return null;
@@ -32,9 +32,9 @@ public class Stack<T> implements StackInterface<T> {
     }
 
     @Override
-    public Node<T> peek() {
+    public T peek() {
         if(!(isEmpty())){
-           return topNode;
+           return topNode.getElement();
         }
         else{
             return null;
@@ -42,16 +42,18 @@ public class Stack<T> implements StackInterface<T> {
     }
 
     @Override
-    public void push(Node<T> e) {
+    public void push(T e) {
         if(isEmpty()){
-            topNode=e;
+            Node<T> temp= new Node<T>(e);
+            topNode=temp;
             topNode.setPrevious(null);
             topNode.setNext(null);
             stackAmount=stackAmount+1;
         }
         else{
+                Node<T> temp2= new Node<T>(e);
                 Node<T> temp=topNode;
-                topNode=e;
+                topNode=temp2;
                 topNode.setNext(temp);
                 temp.setPrevious(topNode);
                 stackAmount++;

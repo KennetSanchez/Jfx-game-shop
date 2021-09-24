@@ -3,7 +3,7 @@ package dataStructures;
 public interface QueueInterface<T> {
 
     public boolean isEmpty();
-    public Node<T> poll();
-    public void offer(Node<T> e);
+    public T poll();
+    public void offer(T e);
 
 }

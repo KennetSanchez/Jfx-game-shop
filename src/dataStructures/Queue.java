@@ -17,11 +17,11 @@ public class Queue<T> implements QueueInterface<T> {
     }
 
     @Override
-    public Node<T> poll() {
+    public T poll() {
         if(!isEmpty()){
            Node<T> temp=firstClient;
            firstClient=firstClient.getNext();
-           return temp;
+           return temp.getElement();
         }
         else{
             return null;
@@ -29,28 +29,30 @@ public class Queue<T> implements QueueInterface<T> {
     }
 
     @Override
-    public void offer(Node<T> e) {
+    public void offer(T e) {
         if(isEmpty()){
-            firstClient= e;
+            firstClient= new Node<T>(e);
             firstClient.setNext(null);
             firstClient.setPrevious(null);
-            lastClient=e;
+            lastClient=firstClient;
             queueAmount=queueAmount+1;
         }
         else{
             if(queueAmount==1){
-                firstClient.setNext(e);
-                lastClient=e;
+                Node<T> temp= new Node<T>(e);
+                firstClient.setNext(temp);
+                lastClient=temp;
                 lastClient.setPrevious(firstClient);
                 queueAmount++;
             }
             else{
+                Node<T> temp= new Node<T>(e);
                 Node<T> indicator= firstClient;
                 while(indicator.getNext()==null){
                     indicator=indicator.getNext();
                 }
-                indicator.setNext(e);
-                lastClient=e;
+                indicator.setNext(temp);
+                lastClient=temp;
                 lastClient.setPrevious(indicator);
                 queueAmount++;
 
