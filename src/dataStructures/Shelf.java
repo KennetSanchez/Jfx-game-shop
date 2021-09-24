@@ -7,7 +7,7 @@ import model.Game;
 public class Shelf<K,V> implements HashTableInterface<K,V>{
     private String identifier;
     private int m;
-    private ArrayList<GameSpace<K,V>> table;
+    private GameSpace<K,V>[] table;
     private int prime;
     private int size;
     private GameSpace<K,V> deleted;
@@ -17,6 +17,7 @@ public class Shelf<K,V> implements HashTableInterface<K,V>{
         this.identifier=identifier;
         this.m=m;
         size=0;
+        table=new GameSpace[m];
         if(m<=2){
             prime=m;
         }
@@ -37,18 +38,20 @@ public class Shelf<K,V> implements HashTableInterface<K,V>{
 
 
     @Override
-    public void insert(K key, V value) {
+    public void insert(K key, V value,int n) {
         if(size==m){
+            //System.out.println("aqui");
             return;
         }
         int hash1 = hash1(key.hashCode());
         int hash2 = hash2(key.hashCode());
-        while(table.get(hash1)!=null){
+        while(table[hash1] !=null){
             hash1 += hash2;
             hash1 %= m;
         }
 
-        table.set(hash1,new GameSpace<>(key, value));
+        table[hash1] = new GameSpace<>(key, value,n);
+        System.out.println(hash1);
         size++;
     }
 
@@ -56,18 +59,30 @@ public class Shelf<K,V> implements HashTableInterface<K,V>{
     public V search(K key) {
         int index1 = hash1(key.hashCode());
         int index2 = hash2(key.hashCode());
-        int i = 0;
-        while (table.get((index1 + i * index2) % m).hashCode() != key.hashCode()) {
-            if (table.get((index1 + i * index2) % m).hashCode() == -1) {
-                return null;
+        for(int i=0;i<=m;i++){
+            //System.out.println("buscando el numero"+((index1 + i * index2) % m));
+            if(table[(index1 + i * index2) % m].getKey() == key){
+                return table[(index1 + i * index2) % m].getValue();
             }
-            i++;
         }
-        return (table.get((index1 + i * index2) % m).getValue());
+        return null;
     }
 
     @Override
-    public void delete(K key) {
-
+    public V delete(K key) {
+        int hash1 = hash1(key.hashCode());
+        int hash2 = hash2(key.hashCode());
+        while (table[hash1] != null && !table[hash1].getKey().equals(key)) {
+            hash1 += hash2;
+            hash1 %= m;
+        }
+        GameSpace<K,V> obtained=table[hash1];
+        if(obtained.getNumberOfItems()>0){
+            obtained.reduceNumberOfItems();
+            return obtained.getValue();
+        }
+        else{
+            return null;
+        }
     }
 }

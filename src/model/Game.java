@@ -6,10 +6,9 @@ public class Game {
     private double price;
     private int quantity;
 
-    public Game(String code,double price,int quantity){
+    public Game(String code,double price){
         this.code=code;
         this.price=price;
-        this.quantity=quantity;
     }
 
     public String getCode() {

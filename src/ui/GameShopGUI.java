@@ -46,15 +46,17 @@ public class GameShopGUI {
                 System.out.println("Enter the code, the price and the quantity of copies. Example: 173 25000 5");
                 String[] pts = br.readLine().split(" ");
                 String code = pts[0];
-                Game game = new Game(code,Double.parseDouble(pts[1]),Integer.parseInt(pts[2]));
-                shelf.insert(code,game);
+                Game game = new Game(code,Double.parseDouble(pts[1]));
+                shelf.insert(code,game,Integer.parseInt(pts[2]));
             }
             gs.addShelf(shelf);
         }
         System.out.println("Enter the number of customers entering the store");
         int c = br.read();
         for(int i=0;i<c;i++){
-            //WIP
+            System.out.println("Enter the customer's ID and the list of codes for the games he wants to buy. Example: 1627 287 612");
+            String [] aux = br.readLine().split(" ");
+
         }
         return "";
     }

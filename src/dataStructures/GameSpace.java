@@ -5,10 +5,12 @@ import model.Game;
 public class GameSpace<K,V> {
     private V value;
     private K key;
+    private int numberOfItems;
 
-    public GameSpace(K key,V value){
+    public GameSpace(K key,V value,int numberOfItems){
         this.key=key;
         this.value=value;
+        this.numberOfItems=numberOfItems;
     }
 
     public V getValue() {
@@ -25,5 +27,17 @@ public class GameSpace<K,V> {
 
     public void setKey(K key) {
         this.key = key;
+    }
+
+    public int getNumberOfItems() {
+        return numberOfItems;
+    }
+
+    public void setNumberOfItems(int numberOfItems) {
+        this.numberOfItems = numberOfItems;
+    }
+
+    public void reduceNumberOfItems(){
+        numberOfItems--;
     }
 }
