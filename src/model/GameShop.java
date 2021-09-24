@@ -18,6 +18,8 @@ public class GameShop {
         shelvesAL.add(s);
     }
 
+    //public int
+
 
 
     //getters and setters
