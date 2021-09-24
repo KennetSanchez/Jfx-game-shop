@@ -40,7 +40,7 @@ public class Stack<T> implements StackInterface<T> {
             return null;
         }
     }
-
+//aa
     @Override
     public void push(T e) {
         if(isEmpty()){
