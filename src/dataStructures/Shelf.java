@@ -61,7 +61,7 @@ public class Shelf<K,V> implements HashTableInterface<K,V>{
         int index2 = hash2(key.hashCode());
         for(int i=0;i<=m;i++){
             //System.out.println("buscando el numero"+((index1 + i * index2) % m));
-            if(table[(index1 + i * index2) % m].getKey() == key){
+            if(table[(index1 + i * index2) % m].getKey().equals(key)){
                 return table[(index1 + i * index2) % m].getValue();
             }
         }

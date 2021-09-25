@@ -7,8 +7,6 @@ public class Stack<T> implements StackInterface<T> {
 
     public Stack(){
         topNode=null;
-        topNode.setPrevious(null);
-        topNode.setNext(null);
         stackAmount=0;
     }
 
