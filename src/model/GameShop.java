@@ -142,8 +142,8 @@ public class GameShop {
         clients.clear();
         String info = "";
         int i=0;
-      while(i<=clientsSize){
-          //System.out.println("numero "+i);
+      while(i<clientsSize){
+          System.out.println("numero "+i);
           for(int j=0;j<cashiers.length;j++){
               if(cashiers[j].getClient()==null){
                   //System.out.println("no hay cliente en "+j);

@@ -28,8 +28,9 @@ public class Cashier {
             client.setPriceToPay(price);
             client.setFinalGameList(gameList);
             lastClient=client;
+            price =0;
+            gameList="";
             client=null;
-            System.out.println("verdadero");
             return true;
         }
     }

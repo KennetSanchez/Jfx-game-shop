@@ -59,7 +59,8 @@ public class Queue<T> implements QueueInterface<T> {
             else{
                 Node<T> temp= new Node<T>(e);
                 Node<T> indicator= firstClient;
-                while(indicator.getNext()==null){
+                while(indicator.getNext()!=null){
+                    System.out.println("si");
                     indicator=indicator.getNext();
                 }
                 indicator.setNext(temp);
