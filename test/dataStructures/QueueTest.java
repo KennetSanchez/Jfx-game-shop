@@ -8,7 +8,7 @@ public class QueueTest {
    Queue<Client> queueTest;
    Client temp;
 
-   public void QueueTestScenary1(){
+   public void queueTestScenary1(){
       queueTest = new Queue<Client>();
       String[] aux={"a","b"};
       temp= new Client("a", aux, 2);
@@ -18,13 +18,13 @@ public class QueueTest {
 
    @Test
    void checkIsEmpty(){
-      QueueTestScenary1();
+      queueTestScenary1();
       assertFalse(queueTest.isEmpty());
    }
 
    @Test
    void checkPoll(){
-      QueueTestScenary1();
+      queueTestScenary1();
       assertEquals(temp,queueTest.poll());
    }
 
