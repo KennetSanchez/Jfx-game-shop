@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="553.0" prefWidth="888.0" style="-fx-background-color: #232946;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="15.0" layoutY="289.0" prefHeight="31.0" prefWidth="323.0" text="How many cashers are in this shieft?" textFill="#b8c1ec">
@@ -26,22 +25,22 @@
             <Font name="Verdana Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="INITIALCONDITIONS_testCases" alignment="CENTER" layoutX="395.0" layoutY="129.0" prefHeight="25.0" prefWidth="98.0" promptText="Integers" style="-fx-background-color: #b8c1ec; -fx-background-radius: 20;">
+      <TextField fx:id="INITIALCONDITIONS_txtTestCases" alignment="CENTER" layoutX="396.0" layoutY="209.0" prefHeight="25.0" prefWidth="98.0" promptText="Integers" style="-fx-background-color: #b8c1ec; -fx-background-radius: 20;">
          <font>
             <Font name="Verdana Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="INITIALCONDITIONS_cashiers" alignment="CENTER" layoutX="128.0" layoutY="331.0" prefHeight="25.0" prefWidth="98.0" promptText="Integers" style="-fx-background-color: #b8c1ec; -fx-background-radius: 20;">
+      <TextField fx:id="INITIALCONDITIONS_txtCashiers" alignment="CENTER" layoutX="128.0" layoutY="423.0" prefHeight="25.0" prefWidth="98.0" promptText="Integers" style="-fx-background-color: #b8c1ec; -fx-background-radius: 20;">
          <font>
             <Font name="Verdana Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="INITIALCONDITIONS_shelves" alignment="CENTER" layoutX="663.0" layoutY="331.0" prefHeight="25.0" prefWidth="98.0" promptText="Integers" style="-fx-background-color: #b8c1ec; -fx-background-radius: 20;">
+      <TextField fx:id="INITIALCONDITIONS_txtShelves" alignment="CENTER" layoutX="663.0" layoutY="438.0" prefHeight="25.0" prefWidth="98.0" promptText="Integers" style="-fx-background-color: #b8c1ec; -fx-background-radius: 20;">
          <font>
             <Font name="Verdana Bold" size="15.0" />
          </font>
       </TextField>
-      <Button contentDisplay="RIGHT" layoutX="273.0" layoutY="488.0" mnemonicParsing="false" onAction="#INITIALCONDITIONS_done" prefHeight="31.0" prefWidth="122.0" style="-fx-background-color: #eebbc3; -fx-background-radius: 20;" text="Cancel" textFill="#232946">
+      <Button contentDisplay="RIGHT" layoutX="273.0" layoutY="488.0" mnemonicParsing="false" onAction="#INITIALCONDITIONS_cancel" prefHeight="31.0" prefWidth="122.0" style="-fx-background-color: #eebbc3; -fx-background-radius: 20;" text="Cancel" textFill="#232946">
          <font>
             <Font name="Verdana" size="15.0" />
          </font>
@@ -53,7 +52,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button contentDisplay="RIGHT" layoutX="493.0" layoutY="488.0" mnemonicParsing="false" onAction="#INITIALCONDITIONS_done" prefHeight="31.0" prefWidth="122.0" style="-fx-background-color: #eebbc3; -fx-background-radius: 20;" text="Done" textFill="#232946">
+      <Button contentDisplay="RIGHT" layoutX="467.0" layoutY="488.0" mnemonicParsing="false" onAction="#INITIALCONDITIONS_done" prefHeight="35.0" prefWidth="122.0" style="-fx-background-color: #eebbc3; -fx-background-radius: 20;" text="Done" textFill="#232946">
          <font>
             <Font name="Verdana" size="15.0" />
          </font>
@@ -65,5 +64,20 @@
             </ImageView>
          </graphic>
       </Button>
+      <ImageView fitHeight="86.0" fitWidth="116.0" layoutX="133.0" layoutY="327.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Icons/Cashiers.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="86.0" fitWidth="116.0" layoutX="400.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Icons/TestCases.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="86.0" fitWidth="116.0" layoutX="655.0" layoutY="327.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Icons/Shelves.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

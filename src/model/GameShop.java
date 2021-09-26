@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class GameShop {
+    
     private ArrayList<Shelf<String,Game>> shelvesAL;
     private NearestPrimeFinder primeF;
     private ArrayList<Client> clients;
@@ -171,6 +172,13 @@ public class GameShop {
         return info;
     }
 
+    public void addCostumer(String id, String games){
+        String [] gamesA = games.split(";");
+        Client newCostumer = new Client(id, gamesA, counter);
+        counter++;
+        clients.add(newCostumer);
+
+    }
     //getters and setters
     public ArrayList<Shelf<String, Game>> getShelvesAL() {
         return shelvesAL;
@@ -187,4 +195,5 @@ public class GameShop {
     public void setShelvesAL(ArrayList<Shelf<String, Game>> shelvesAL) {
         this.shelvesAL = shelvesAL;
     }
+
 }
