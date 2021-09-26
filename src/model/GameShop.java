@@ -131,26 +131,31 @@ public class GameShop {
 
     public void createQueue(){
         sortClientsByMinutes();
+        //System.out.println("client size "+clients.size());
         for(int i=0;i<clients.size();i++){
             clientsQueue.offer(clients.get(i));
         }
     }
 
     public void serveClients(){
+        int clientsSize = clients.size();
         clients.clear();
         String info = "";
         int i=0;
-      while(i<=5){
-          for(int j=0;j< cashiers.length;j++){
-              if(cashiers[i].getClient()==null){
-                  if(clientsQueue!=null){
-                      cashiers[i].setClient(clientsQueue.poll());
+      while(i<=clientsSize){
+          //System.out.println("numero "+i);
+          for(int j=0;j<cashiers.length;j++){
+              if(cashiers[j].getClient()==null){
+                  //System.out.println("no hay cliente en "+j);
+                  if(!clientsQueue.isEmpty()){
+                      System.out.println("entra aqui??");
+                      cashiers[j].setClient(clientsQueue.poll());
                   }
               }
               else{
-                  if(cashiers[i].registerAGame()){
+                  if(cashiers[j].registerAGame()){
                       i++;
-                      clients.add(cashiers[i].getLastClient());
+                      clients.add(cashiers[j].getLastClient());
                   }
               }
           }

@@ -21,6 +21,7 @@ public class Cashier {
             Game currentGame= client.getBasket().pop();
             price+=currentGame.getPrice();
             gameList+=currentGame.getCode()+" ";
+            System.out.println("falso");
             return false;
         }
         else{
@@ -28,6 +29,7 @@ public class Cashier {
             client.setFinalGameList(gameList);
             lastClient=client;
             client=null;
+            System.out.println("verdadero");
             return true;
         }
     }

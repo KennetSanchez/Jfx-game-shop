@@ -15,7 +15,7 @@ public class Queue<T> implements QueueInterface<T> {
     }
     @Override
     public boolean isEmpty() {
-        return firstClient == null;
+        return queueAmount==0;
     }
 
     @Override

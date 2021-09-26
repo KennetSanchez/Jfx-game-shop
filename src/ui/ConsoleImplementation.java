@@ -68,8 +68,11 @@ public class ConsoleImplementation {
             }
         }
         gs.clientsGetGames();
+        System.out.println("GetGames done");
         gs.createQueue();
+        System.out.println("Createqueue done");
         gs.serveClients();
+        System.out.println("serveclient done");
         return gs.showClientsResult();
     }
 }
