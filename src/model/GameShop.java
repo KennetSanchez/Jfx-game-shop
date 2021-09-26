@@ -75,7 +75,7 @@ public class GameShop {
                     data[j]+=" "+a;
                     int b=whichShelf(aux);
                     aux+=" "+b;
-                    while ((j >= 0) && a > b ) {
+                    while ((j >= 0) && a >= b ) {
                         data[j + 1] = data[j];
                         j = j - 1;
                     }
@@ -100,7 +100,7 @@ public class GameShop {
                     data[j]+=" "+a;
                     int b = whichShelf(data[j+1]);
                     data[j+1]+=" "+b;
-                    if (a > b) {
+                    if (a >= b) {
                         String temp = data[j];
                         data[j] = data[j + 1];
                         data[j + 1] = temp;

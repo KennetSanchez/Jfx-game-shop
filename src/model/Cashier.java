@@ -1,15 +1,19 @@
 package model;
 
+import dataStructures.Stack;
+
 public class Cashier {
     private Client client;
-    private double price;
+    private int price;
     private String gameList;
     private Client lastClient;
+    private Stack<Game> cashierBasket;
 
     public Cashier(Client client){
         this.client=client;
         price = 0;
         gameList="";
+        cashierBasket=new Stack<>();
     }
 
     public void setClient(Client client){
@@ -20,12 +24,13 @@ public class Cashier {
         if(client.getBasket().peek()!=null){
             Game currentGame= client.getBasket().pop();
             price+=currentGame.getPrice();
-            gameList+=currentGame.getCode()+" ";
-            System.out.println("falso");
+            cashierBasket.push(currentGame);
             return false;
         }
         else{
             client.setPriceToPay(price);
+            extractGames();
+            gameList=gameList.substring(0, gameList.length() - 1);
             client.setFinalGameList(gameList);
             lastClient=client;
             price =0;
@@ -35,15 +40,21 @@ public class Cashier {
         }
     }
 
+    public void extractGames(){
+        while(!cashierBasket.isEmpty()){
+            gameList+=cashierBasket.pop().getCode()+" ";
+        }
+    }
+
     public Client getClient() {
         return client;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

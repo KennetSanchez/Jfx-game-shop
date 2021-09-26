@@ -9,7 +9,7 @@ public class Client {
     private String[] gameList;
     private int minute;
     private Stack<Game> basket;
-    private double priceToPay;
+    private int priceToPay;
     private String finalGameList;
 
     public Client(String id,String[] gameList,int minute){
@@ -61,11 +61,11 @@ public class Client {
     public void setBasket(Stack<Game> basket) {
         this.basket = basket;
     }
-    public double getPriceToPay() {
+    public int getPriceToPay() {
         return priceToPay;
     }
 
-    public void setPriceToPay(double priceToPay) {
+    public void setPriceToPay(int priceToPay) {
         this.priceToPay = priceToPay;
     }
 

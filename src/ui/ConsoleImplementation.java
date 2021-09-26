@@ -45,7 +45,7 @@ public class ConsoleImplementation {
                 System.out.println("Enter the code, the price and the quantity of copies. Example: 173 25000 5");
                 String[] pts = br.readLine().split(" ");
                 String code = pts[0];
-                Game game = new Game(code,Double.parseDouble(pts[1]));
+                Game game = new Game(code,Integer.parseInt(pts[1]));
                 shelf.insert(code,game,Integer.parseInt(pts[2]));
             }
             gs.addShelf(shelf);
