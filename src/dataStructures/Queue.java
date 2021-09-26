@@ -6,6 +6,8 @@ public class Queue<T> implements QueueInterface<T> {
     private Node<T> lastClient;
     private int queueAmount;
 
+
+
     public Queue() {
     firstClient=null;
     lastClient=null;
@@ -67,6 +69,30 @@ public class Queue<T> implements QueueInterface<T> {
 
             }
         }
+    }
+
+    public Node<T> getFirstClient() {
+        return firstClient;
+    }
+
+    public void setFirstClient(Node<T> firstClient) {
+        this.firstClient = firstClient;
+    }
+
+    public Node<T> getLastClient() {
+        return lastClient;
+    }
+
+    public void setLastClient(Node<T> lastClient) {
+        this.lastClient = lastClient;
+    }
+
+    public int getQueueAmount() {
+        return queueAmount;
+    }
+
+    public void setQueueAmount(int queueAmount) {
+        this.queueAmount = queueAmount;
     }
 
 }
