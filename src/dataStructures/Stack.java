@@ -18,11 +18,19 @@ public class Stack<T> implements StackInterface<T> {
     @Override
     public T pop() {
         if(!(isEmpty())){
-            Node<T> temp=topNode;
-            topNode=topNode.getNext();
-            topNode.setPrevious(null);
-            stackAmount--;
-            return temp.getElement();
+            if(stackAmount==1){
+                Node<T> temp=topNode;
+                topNode=null;
+                stackAmount--;
+                return temp.getElement();
+            }
+            else{
+                Node<T> temp=topNode;
+                topNode=topNode.getNext();
+                topNode.setPrevious(null);
+                stackAmount--;
+                return temp.getElement();
+            }
         }
         else{
             return null;
