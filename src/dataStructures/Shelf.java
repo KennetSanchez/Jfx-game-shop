@@ -1,9 +1,5 @@
 package dataStructures;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
-import model.Game;
-
 public class Shelf<K,V> implements HashTableInterface<K,V>{
     private String identifier;
     private int m;
@@ -11,6 +7,7 @@ public class Shelf<K,V> implements HashTableInterface<K,V>{
     private int prime;
     private int size;
     private GameSpace<K,V> deleted;
+
 
 
     public Shelf(String identifier,int m,NearestPrimeFinder finder){
@@ -40,7 +37,6 @@ public class Shelf<K,V> implements HashTableInterface<K,V>{
     @Override
     public void insert(K key, V value,int n) {
         if(size==m){
-            //System.out.println("aqui");
             return;
         }
         int hash1 = hash1(key.hashCode());
@@ -84,5 +80,13 @@ public class Shelf<K,V> implements HashTableInterface<K,V>{
         else{
             return null;
         }
+    }
+
+    public String getIdentifier(){
+        return identifier;
+    }
+
+    public int getSize(){
+        return m;
     }
 }

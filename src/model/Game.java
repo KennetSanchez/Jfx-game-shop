@@ -1,6 +1,5 @@
 package model;
 
-//Sorry for this, I need to commit
 public class Game {
     private String code;
     private double price;

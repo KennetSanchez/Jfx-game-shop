@@ -48,7 +48,7 @@ public class ConsoleImplementation {
                 Game game = new Game(code,Integer.parseInt(pts[1]));
                 shelf.insert(code,game,Integer.parseInt(pts[2]));
             }
-            gs.addShelf(shelf);
+            //gs.addShelf(shelf);
         }
         System.out.println("Enter the number of customers entering the store");
         int c = Integer.parseInt(br.readLine());

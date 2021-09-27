@@ -3,5 +3,8 @@ module Jfx.game.shop {
     requires javafx.controls;
     requires javafx.graphics;
     //requires kotlin.stdlib;
+
     opens ui;
+    opens dataStructures;
+    opens model;
 }

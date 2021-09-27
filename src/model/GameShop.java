@@ -26,8 +26,14 @@ public class GameShop {
         clientsQueue=new Queue<>();
     }
 
-    public void addShelf(Shelf<String,Game> s){
-        shelvesAL.add(s);
+    public void addGame(Shelf shelf, String code, double price, int quantity){
+        Game newGame = new Game(code, price);
+        newGame.setQuantity(quantity);
+        shelf.insert(code,newGame, quantity);
+    }
+    public void addShelf(String id, int size){
+        Shelf newShelf = new Shelf(id, size, getPrimeF());
+        shelvesAL.add(newShelf);
     }
 
     public void addCashiers(int size){

@@ -2,6 +2,8 @@ package ui;
 
 
 import dataStructures.Shelf;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Client;
 import model.Game;
@@ -42,6 +46,13 @@ public class GameShopGUI<CLIENTS_tcName> {
         alert.show();
     }
 
+    private void wrongFormat(){
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Error!");
+        alert.setHeaderText("Wrong format");
+        alert.setContentText("Please write only integers");
+        alert.show();
+    }
     // ------------------------------------------------------------ INITIAL CONDITIONS CODE ------------------------------------------------------------
 
     @FXML
@@ -75,12 +86,7 @@ public class GameShopGUI<CLIENTS_tcName> {
                 showShelves();
             }
         }catch(Exception e){
-            System.out.println(e);
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error!");
-            alert.setHeaderText("Wrong format");
-            alert.setContentText("Please write only integers");
-            alert.show();
+            wrongFormat();
         }
         
         
@@ -105,6 +111,7 @@ public class GameShopGUI<CLIENTS_tcName> {
 
 
     // ------------------------------------------------------------ SHELVES CODE ------------------------------------------------------------
+    Shelf  selectedShelf;
 
     @FXML
     private TextField SHELVES_txtShelveId;
@@ -113,7 +120,7 @@ public class GameShopGUI<CLIENTS_tcName> {
     private TextField SHELVES_txtGameId;
 
     @FXML
-    private TableView<Shelf> SHELVES_tvShelves;
+    private TableView<Shelf<String, Game>> SHELVES_tvShelves;
 
     @FXML
     private TableColumn<Shelf, String> SHELVES_tcShelve;
@@ -143,21 +150,74 @@ public class GameShopGUI<CLIENTS_tcName> {
     private TextField SHELVES_txtGameAmount;
 
     @FXML
-    void SHELVES_Menu(ActionEvent event) {
-
+    void SHELVES_Menu(ActionEvent event) throws IOException {
+        showMenu();
     }
 
     @FXML
     void SHELVES_addGame(ActionEvent event) {
+        String code = SHELVES_txtGameId.getText();
+        String sPrice = SHELVES_txtGamePrice.getText();
+        String sAmount = SHELVES_txtGameAmount.getText();
+
+        try{
+            double price = Double.parseDouble(sPrice);
+            int gameAmount = Integer.parseInt(sAmount);
+            selectedShelf = gs.getShelvesAL().get(0);
+
+            if(!code.equals("") && !sPrice.equals("") && !sAmount.equals("") && selectedShelf != null){
+                gs.addGame(selectedShelf, code, price, gameAmount);
+                SHELVES_txtGameAmount.setText("");
+                SHELVES_txtGameId.setText("");
+                SHELVES_txtGamePrice.setText("");
+            }else{
+                missingInfo();
+            }
+        }catch(Exception e){
+            wrongFormat();
+        }
+
 
     }
 
     @FXML
-    void SHELVES_addShelve(ActionEvent event) {
+    void SHELVES_addShelve(ActionEvent event) throws IOException {
+        String id = SHELVES_txtShelveId.getText();
+        int size = 0;
+        try{
+            size = Integer.parseInt(SHELVES_txtGameSpace.getText());
+        }catch(Exception e){
+            wrongFormat();
+        }
+
+        if(size != 0 && !id.equals("")){
+            gs.addShelf(id, size);
+            SHELVES_txtGameSpace.setText("");
+            SHELVES_txtShelveId.setText("");
+            refreshShelves();
+        }else{
+            missingInfo();
+        }
+    }
+
+    @FXML
+    void SHELVES_pickAShelf(MouseEvent event) {
+        if(event.getClickCount() == 2){
+            if(SHELVES_tvShelves.getSelectionModel().getSelectedItem() != null) {
+                selectedShelf = SHELVES_tvShelves.getSelectionModel().getSelectedItem();
+                System.out.print(selectedShelf.getIdentifier());
+            }else{
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error!");
+                alert.setHeaderText("Null element");
+                alert.setContentText("Please select a valid element, and try again");
+                alert.show();
+            }
+        }
 
     }
 
-    // ------------------------------------------------------------ SHELVES CODE ------------------------------------------------------------
+    // ------------------------------------------------------------ COSTUMERS CODE ------------------------------------------------------------
 
     @FXML
     private TableView<Client> CLIENTS_tvClients;
@@ -188,7 +248,7 @@ public class GameShopGUI<CLIENTS_tcName> {
 
     @FXML
     void goMenu(ActionEvent event) throws IOException {
-    showMenu();
+        showMenu();
     }
 
 
@@ -226,7 +286,29 @@ public class GameShopGUI<CLIENTS_tcName> {
         popupStage.setScene(e);
         mainStage.hide();
         popupStage.show();
+        refreshShelves();
 
+    }
+
+    private void refreshShelves() throws IOException{
+        if(gs.getShelvesAL() != null) {
+            ObservableList<Shelf<String, Game>> shelves = FXCollections.observableList(gs.getShelvesAL());
+            SHELVES_tvShelves.setItems(shelves);
+        }
+
+        SHELVES_tcShelve.setCellValueFactory(new PropertyValueFactory<Shelf,String>("identifier"));
+        SHELVES_tcSpace.setCellValueFactory(new PropertyValueFactory<Shelf, Integer>("size"));
+    }
+
+    private void refreshGames() throws IOException{
+        //if(selectedShelf.getGames() != null) {
+            //ObservableList<Game> games = FXCollections.observableList(selectedShelf.getGames());
+            //SHELVES_tvGames.setItems(games);
+        //}
+
+        SHELVES_tcGameId.setCellValueFactory(new PropertyValueFactory<Game,String>("code"));
+        SHELVES_tcGameAmount.setCellValueFactory(new PropertyValueFactory<Game, Integer>("amount"));
+        SHELVES_tcGamePrice.setCellValueFactory(new PropertyValueFactory<Game, Double>("price"));
     }
 
     private void showCostumers() throws IOException {

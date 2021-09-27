@@ -56,7 +56,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <TableView fx:id="SHELVES_tvShelves" layoutX="79.0" layoutY="31.0" prefHeight="200.0" prefWidth="243.0">
+      <TableView fx:id="SHELVES_tvShelves" layoutX="79.0" layoutY="31.0" onMouseClicked="#SHELVES_pickAShelf" prefHeight="200.0" prefWidth="243.0">
         <columns>
           <TableColumn fx:id="SHELVES_tcShelve" minWidth="0.0" prefWidth="154.0" text="Shelve " />
             <TableColumn fx:id="SHELVES_tcSpace" minWidth="0.0" prefWidth="88.0" text="Space" />
