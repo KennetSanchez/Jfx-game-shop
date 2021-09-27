@@ -79,7 +79,8 @@ public class GameShopGUI<CLIENTS_tcName> {
             testCases = Integer.parseInt(INITIALCONDITIONS_txtTestCases.getText());
             cashiers = Integer.parseInt(INITIALCONDITIONS_txtCashiers.getText());
             shelves = Integer.parseInt(INITIALCONDITIONS_txtShelves.getText());    
-            
+
+            gs.addCashiers(cashiers);
             if(testCases == 0 || cashiers == 0 || shelves == 0 ){
                 missingInfo();
             }else{
@@ -109,11 +110,8 @@ public class GameShopGUI<CLIENTS_tcName> {
     @FXML
     void MENU_start(ActionEvent event) {
         gs.clientsGetGames();
-        System.out.println("GetGames done");
         gs.createQueue();
-        System.out.println("Createqueue done");
         gs.serveClients();
-        System.out.println("serveclient done");
         System.out.println("\n" + gs.showClientsResult());
     }
 
@@ -171,7 +169,6 @@ public class GameShopGUI<CLIENTS_tcName> {
         try{
             double price = Double.parseDouble(sPrice);
             int gameAmount = Integer.parseInt(sAmount);
-            selectedShelf = gs.getShelvesAL().get(0);
 
             if(!code.equals("") && !sPrice.equals("") && !sAmount.equals("") && selectedShelf != null){
                 gs.addGame(selectedShelf, code, price, gameAmount);
@@ -213,7 +210,6 @@ public class GameShopGUI<CLIENTS_tcName> {
         if(event.getClickCount() == 2){
             if(SHELVES_tvShelves.getSelectionModel().getSelectedItem() != null) {
                 selectedShelf = SHELVES_tvShelves.getSelectionModel().getSelectedItem();
-                System.out.print(selectedShelf.getIdentifier());
             }else{
                 Alert alert = new Alert(AlertType.ERROR);
                 alert.setTitle("Error!");
@@ -274,9 +270,10 @@ public class GameShopGUI<CLIENTS_tcName> {
     void addCostumer(ActionEvent event) throws IOException {
         String id = CLIENTS_txtId.getText();
         String games = CLIENTS_txtGames.getText();
+        String parsedGames = games.replaceAll("\n", " ");
 
         if((!id.equals("") && (!games.equals("") ) && selectedAlgorithm != 0)){
-            String info = id+ " " +games;
+            String info = id+ " " + parsedGames;
             switch (selectedAlgorithm){
                 case 1:
                     gs.insertionSortGames(info);
@@ -372,12 +369,13 @@ public class GameShopGUI<CLIENTS_tcName> {
     }
 
     private void refreshCostumers() throws IOException{
-        if(gs.getCostumers() != null) {
+        if(gs.getCostumers().size() > 0) {
             ObservableList<Client> costumers = FXCollections.observableList(gs.getCostumers());
             CLIENTS_tvClients.setItems(costumers);
         }
+
         CLIENTS_tcId.setCellValueFactory(new PropertyValueFactory<Client, String>("id"));
-        CLIENTS_tcGames.setCellValueFactory(new PropertyValueFactory<Client, String>("gL"));
+        CLIENTS_tcGames.setCellValueFactory(new PropertyValueFactory<Client, String>("gameListString"));
         CLIENTS_tcSort.setCellValueFactory(new PropertyValueFactory<Client, String>("sa"));
     }
 }

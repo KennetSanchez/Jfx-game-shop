@@ -54,6 +54,7 @@ public class GameShop {
         return -1;
     }
 
+    //¿Por qué un array si solo es un string? Lo está pasando junto forma "id games" con games -> juegos elegidos
     public void insertionSortGames(String[] info){
         String id = info[0];
         int i;
@@ -196,7 +197,6 @@ public class GameShop {
         for(int i=0;i<clients.size();i++){
             Client aux = clients.get(i);
             for(int j=0;j<aux.getGameList().length;j++){
-                System.out.println("Se dan "+aux.getGameList()[j]);
                 String[] position = aux.getGameList()[j].split(" ");
                 clients.get(i).putGames(shelvesAL.get(Integer.parseInt(position[1])).delete(position[0]));
             }
@@ -210,7 +210,6 @@ public class GameShop {
 
     public void createQueue(){
         sortClientsByMinutes();
-        //System.out.println("client size "+clients.size());
         for(int i=0;i<clients.size();i++){
             clientsQueue.offer(clients.get(i));
         }
@@ -222,12 +221,12 @@ public class GameShop {
         String info = "";
         int i=0;
       while(i<clientsSize){
-          System.out.println("numero "+i);
+
           for(int j=0;j<cashiers.length;j++){
               if(cashiers[j].getClient()==null){
-                  //System.out.println("no hay cliente en "+j);
+
                   if(!clientsQueue.isEmpty()){
-                      System.out.println("entra aqui??");
+
                       cashiers[j].setClient(clientsQueue.poll());
                   }
               }

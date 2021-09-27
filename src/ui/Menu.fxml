@@ -56,7 +56,7 @@
             <Font name="Verdana Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="124.0" layoutY="286.0" prefHeight="19.0" prefWidth="100.0" text="Shot down" textFill="#b8c1ec">
+      <Label layoutX="124.0" layoutY="286.0" prefHeight="19.0" prefWidth="100.0" text="Shut down" textFill="#b8c1ec">
          <font>
             <Font name="Verdana Bold" size="15.0" />
          </font>

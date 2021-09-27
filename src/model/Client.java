@@ -40,11 +40,11 @@ public class Client {
         }
     }
 
-    public String getGL(){
+    public String getGameListString(){
         String msg = "";
 
         for(int i = 0; i < gameList.length; i++){
-            msg += gameList[i] + " ";
+            msg += (gameList[i].split(" ")[0]) + " ";
         }
 
         return msg;
