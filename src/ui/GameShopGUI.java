@@ -255,6 +255,9 @@ public class GameShopGUI<CLIENTS_tcName> {
     private CheckBox CLIENTS_cb_bubbleSort;
 
     @FXML
+    private TableColumn<Client, String> CLIENTS_tcSort;
+
+    @FXML
     void CLIENTS_bubbleSort(ActionEvent event) {
         CLIENTS_cb_insertionSort.setSelected(false);
         selectedAlgorithm = 2;
@@ -273,7 +276,7 @@ public class GameShopGUI<CLIENTS_tcName> {
         String games = CLIENTS_txtGames.getText();
 
         if((!id.equals("") && (!games.equals("") ) && selectedAlgorithm != 0)){
-            String info = id+" "+games;
+            String info = id+ " " +games;
             switch (selectedAlgorithm){
                 case 1:
                     gs.insertionSortGames(info);
@@ -375,6 +378,6 @@ public class GameShopGUI<CLIENTS_tcName> {
         }
         CLIENTS_tcId.setCellValueFactory(new PropertyValueFactory<Client, String>("id"));
         CLIENTS_tcGames.setCellValueFactory(new PropertyValueFactory<Client, String>("gL"));
-
+        CLIENTS_tcSort.setCellValueFactory(new PropertyValueFactory<Client, String>("sa"));
     }
 }

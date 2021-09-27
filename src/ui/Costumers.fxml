@@ -46,7 +46,8 @@
       <TableView fx:id="CLIENTS_tvClients" layoutX="400.0" layoutY="95.0" prefHeight="299.0" prefWidth="459.0">
         <columns>
           <TableColumn fx:id="CLIENTS_tcId" prefWidth="148.0" text="Costumer id" />
-            <TableColumn fx:id="CLIENTS_tcGames" prefWidth="310.0" text="Games wanted" />
+            <TableColumn fx:id="CLIENTS_tcGames" prefWidth="214.0" text="Games wanted" />
+            <TableColumn fx:id="CLIENTS_tcSort" prefWidth="96.0" text="Sort algorithm" />
         </columns>
       </TableView>
       <TextArea fx:id="CLIENTS_txtGames" layoutX="111.0" layoutY="186.0" prefHeight="161.0" prefWidth="149.0" />

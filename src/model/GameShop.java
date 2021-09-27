@@ -157,7 +157,9 @@ public class GameShop {
                     data[j + 1] = aux;
                 }
         }
-        clients.add(new Client(id,data,counter));
+        Client newClient = new Client(id,data,counter);
+        newClient.setSA(1);
+        clients.add(newClient);
         counter++;
     }
 
@@ -184,7 +186,9 @@ public class GameShop {
                 }
             }
         }
-        clients.add(new Client(id,data,counter));
+        Client newClient = new Client(id,data,counter);
+        newClient.setSA(2);
+        clients.add(newClient);
         counter++;
     }
 
@@ -244,14 +248,6 @@ public class GameShop {
             info+=clients.get(i).getFinalGameList()+"\n";
         }
         return info;
-    }
-
-    public void addCostumer(String id, String games, int selectedAlgorithm){
-        String [] gamesA = games.split(";");
-        Client newCostumer = new Client(id, gamesA, counter);
-        counter++;
-        clients.add(newCostumer);
-
     }
     //getters and setters
     public ArrayList<Shelf<String, Game>> getShelvesAL() {

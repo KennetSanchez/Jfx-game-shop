@@ -10,6 +10,7 @@ public class Client {
     private Stack<Game> basket;
     private int priceToPay;
     private String finalGameList;
+    private String sa;
 
     public Client(String id,String[] gameList,int minute){
         this.id=id;
@@ -18,6 +19,18 @@ public class Client {
         basket=new Stack<>();
         priceToPay=0;
         finalGameList="";
+    }
+
+    public void setSA(int option){
+        if(option == 1){
+            sa = "Insertion sort";
+        }else{
+            sa = "Bubble sort";
+        }
+    }
+
+    public String getSa(){
+        return sa;
     }
 
     public void putGames(Game newGame){
@@ -36,6 +49,7 @@ public class Client {
 
         return msg;
     }
+
 
 
     public String getId() {
