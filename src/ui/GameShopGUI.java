@@ -231,6 +231,8 @@ public class GameShopGUI<CLIENTS_tcName> {
     }
     // ------------------------------------------------------------ COSTUMERS CODE ------------------------------------------------------------
 
+    int selectedAlgorithm = 0;
+
     @FXML
     private TableView<Client> CLIENTS_tvClients;
 
@@ -247,15 +249,37 @@ public class GameShopGUI<CLIENTS_tcName> {
     private TextField CLIENTS_txtId;
 
     @FXML
+    private CheckBox CLIENTS_cb_insertionSort;
+
+    @FXML
+    private CheckBox CLIENTS_cb_bubbleSort;
+
+    @FXML
+    void CLIENTS_bubbleSort(ActionEvent event) {
+        CLIENTS_cb_insertionSort.setSelected(false);
+        selectedAlgorithm = 2;
+    }
+
+    @FXML
+    void CLIENT_insertionSort(ActionEvent event) {
+        CLIENTS_cb_bubbleSort.setSelected(false);
+        selectedAlgorithm = 1;
+    }
+
+
+    @FXML
     void addCostumer(ActionEvent event) throws IOException {
         String id = CLIENTS_txtId.getText();
         String games = CLIENTS_txtGames.getText();
 
-        if((!id.equals("") && (!games.equals("")))){
-            gs.addCostumer(id, games);
+        if((!id.equals("") && (!games.equals("") ) && selectedAlgorithm != 0)){
+            gs.addCostumer(id, games, selectedAlgorithm);
             refreshCostumers();
             CLIENTS_txtId.setText("");
             CLIENTS_txtGames.setText("");
+            selectedAlgorithm = 0;
+            CLIENTS_cb_insertionSort.setSelected(false);
+            CLIENTS_cb_bubbleSort.setSelected(false);
         }else{
             missingInfo();
         }

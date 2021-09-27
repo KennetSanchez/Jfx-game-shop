@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -13,7 +14,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="553.0" prefWidth="888.0" style="-fx-background-color: #232946;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button contentDisplay="RIGHT" layoutX="569.0" layoutY="442.0" mnemonicParsing="false" onAction="#goMenu" prefHeight="36.0" prefWidth="122.0" style="-fx-background-color: #eebbc3; -fx-background-radius: 20;" text="Go" textFill="#232946">
+      <Button contentDisplay="RIGHT" layoutX="569.0" layoutY="476.0" mnemonicParsing="false" onAction="#goMenu" prefHeight="36.0" prefWidth="122.0" style="-fx-background-color: #eebbc3; -fx-background-radius: 20;" text="Go" textFill="#232946">
          <font>
             <Font name="Verdana Bold" size="15.0" />
          </font>
@@ -25,7 +26,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button contentDisplay="RIGHT" layoutX="112.0" layoutY="442.0" mnemonicParsing="false" onAction="#addCostumer" prefHeight="31.0" prefWidth="122.0" style="-fx-background-color: #eebbc3; -fx-background-radius: 20;" text="Add" textFill="#232946">
+      <Button contentDisplay="RIGHT" layoutX="112.0" layoutY="478.0" mnemonicParsing="false" onAction="#addCostumer" prefHeight="31.0" prefWidth="122.0" style="-fx-background-color: #eebbc3; -fx-background-radius: 20;" text="Add" textFill="#232946">
          <font>
             <Font name="Verdana Bold" size="15.0" />
          </font>
@@ -60,5 +61,20 @@
             <Font name="Verdana Bold" size="15.0" />
          </font>
       </Label>
+      <CheckBox fx:id="CLIENTS_cb_insertionSort" layoutX="43.0" layoutY="417.0" mnemonicParsing="false" onAction="#CLIENT_insertionSort" text="Insertion sort" textFill="#b8c1ec">
+         <font>
+            <Font name="Verdana Bold" size="12.0" />
+         </font>
+      </CheckBox>
+      <Label layoutX="72.0" layoutY="372.0" prefHeight="31.0" prefWidth="203.0" text="Choose a sort algorithm" textFill="#b8c1ec" wrapText="true">
+         <font>
+            <Font name="Verdana Bold" size="15.0" />
+         </font>
+      </Label>
+      <CheckBox fx:id="CLIENTS_cb_bubbleSort" layoutX="201.0" layoutY="417.0" mnemonicParsing="false" onAction="#CLIENTS_bubbleSort" text="Bubble sort" textFill="#b8c1ec">
+         <font>
+            <Font name="Verdana Bold" size="12.0" />
+         </font>
+      </CheckBox>
    </children>
 </Pane>

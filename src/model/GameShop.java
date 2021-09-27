@@ -31,6 +31,7 @@ public class GameShop {
         newGame.setQuantity(quantity);
         shelf.insert(code,newGame, quantity);
     }
+
     public void addShelf(String id, int size){
         Shelf newShelf = new Shelf(id, size, getPrimeF());
         shelvesAL.add(newShelf);
@@ -178,7 +179,7 @@ public class GameShop {
         return info;
     }
 
-    public void addCostumer(String id, String games){
+    public void addCostumer(String id, String games, int selectedAlgorithm){
         String [] gamesA = games.split(";");
         Client newCostumer = new Client(id, gamesA, counter);
         counter++;
