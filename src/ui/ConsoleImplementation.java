@@ -56,8 +56,7 @@ public class ConsoleImplementation {
         for(int i=0;i<c;i++){
             System.out.println("Enter the customer's ID and the list of codes for the games he wants to buy. Example: 1627 287 612");
             String [] aux = br.readLine().split(" ");
-            //random = (int)Math.random()*(2-2)+1;
-            random=1;
+            random = (int)Math.random()*(2-2)+1;
             switch (random){
                 case 1:
                     gs.bubbleSortGames(aux);
