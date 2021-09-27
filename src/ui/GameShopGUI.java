@@ -96,17 +96,25 @@ public class GameShopGUI<CLIENTS_tcName> {
 
     @FXML
     void MENU_close(ActionEvent event) {
-
+        mainStage.close();
+        popupStage.close();
+        System.exit(0);
     }
 
     @FXML
     void MENU_setConditions(ActionEvent event) throws IOException {
-    showInitialConditions();
+        showInitialConditions();
     }
 
     @FXML
     void MENU_start(ActionEvent event) {
-
+        gs.clientsGetGames();
+        System.out.println("GetGames done");
+        gs.createQueue();
+        System.out.println("Createqueue done");
+        gs.serveClients();
+        System.out.println("serveclient done");
+        System.out.println("\n" + gs.showClientsResult());
     }
 
 
@@ -217,6 +225,10 @@ public class GameShopGUI<CLIENTS_tcName> {
 
     }
 
+    @FXML
+    void SHELVES_addCostumers(ActionEvent event) throws IOException {
+        showCostumers();
+    }
     // ------------------------------------------------------------ COSTUMERS CODE ------------------------------------------------------------
 
     @FXML
@@ -235,12 +247,15 @@ public class GameShopGUI<CLIENTS_tcName> {
     private TextField CLIENTS_txtId;
 
     @FXML
-    void addCostumer(ActionEvent event) {
+    void addCostumer(ActionEvent event) throws IOException {
         String id = CLIENTS_txtId.getText();
         String games = CLIENTS_txtGames.getText();
 
         if((!id.equals("") && (!games.equals("")))){
             gs.addCostumer(id, games);
+            refreshCostumers();
+            CLIENTS_txtId.setText("");
+            CLIENTS_txtGames.setText("");
         }else{
             missingInfo();
         }
@@ -295,7 +310,6 @@ public class GameShopGUI<CLIENTS_tcName> {
             ObservableList<Shelf<String, Game>> shelves = FXCollections.observableList(gs.getShelvesAL());
             SHELVES_tvShelves.setItems(shelves);
         }
-
         SHELVES_tcShelve.setCellValueFactory(new PropertyValueFactory<Shelf,String>("identifier"));
         SHELVES_tcSpace.setCellValueFactory(new PropertyValueFactory<Shelf, Integer>("size"));
     }
@@ -319,5 +333,16 @@ public class GameShopGUI<CLIENTS_tcName> {
         popupStage.setScene(e);
         mainStage.hide();
         popupStage.show();
+        refreshCostumers();
+    }
+
+    private void refreshCostumers() throws IOException{
+        if(gs.getCostumers() != null) {
+            ObservableList<Client> costumers = FXCollections.observableList(gs.getCostumers());
+            CLIENTS_tvClients.setItems(costumers);
+        }
+        CLIENTS_tcId.setCellValueFactory(new PropertyValueFactory<Client, String>("id"));
+        CLIENTS_tcGames.setCellValueFactory(new PropertyValueFactory<Client, String>("gL"));
+
     }
 }

@@ -1,7 +1,6 @@
 package model;
 
 
-import dataStructures.Queue;
 import dataStructures.Stack;
 
 public class Client {
@@ -28,7 +27,15 @@ public class Client {
         }
     }
 
+    public String getGL(){
+        String msg = "";
 
+        for(int i = 0; i < gameList.length; i++){
+            msg += gameList[i] + " ";
+        }
+
+        return msg;
+    }
 
 
     public String getId() {

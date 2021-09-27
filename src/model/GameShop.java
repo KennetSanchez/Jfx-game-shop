@@ -202,4 +202,7 @@ public class GameShop {
         this.shelvesAL = shelvesAL;
     }
 
+    public ArrayList<Client> getCostumers (){
+        return clients;
+    }
 }
