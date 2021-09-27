@@ -90,7 +90,7 @@ public class GameShop {
                     data[j + 1] = aux;
                 }
         }
-        clients.add(new Client(id,data,counter));//falta la suma de los juegos
+        clients.add(new Client(id,data,counter));
         counter++;
     }
 
@@ -116,10 +116,77 @@ public class GameShop {
                 }
             }
         }
-        clients.add(new Client(id,data,counter));//falta la suma de los juegos
+        clients.add(new Client(id,data,counter));
         counter++;
     }
 
+    public void insertionSortGames(String inf){
+        String[] info = inf.split(" ");
+        String id = info[0];
+        int i;
+        int j;
+        String aux="";
+        String[] data = Arrays.copyOfRange(info, 1, info.length);
+        switch(data.length){
+            case 1:
+                data[0]+=" "+whichShelf(data[0]);
+                break;
+            case 2:
+                int k=whichShelf(data[0]);
+                data[0]+=" "+k;
+                int q=whichShelf(data[1]);
+                data[1]+=" "+q;
+                if(q<k){
+                    String aux2 = data[1];
+                    data[1]=data[0];
+                    data[0]=aux2;
+                }
+                break;
+            default:
+                for (i = 1; i < data.length; i++) {
+                    aux = data[i];
+                    j = i - 1;
+                    int a=whichShelf(data[j]);
+                    data[j]+=" "+a;
+                    int b=whichShelf(aux);
+                    aux+=" "+b;
+                    while ((j >= 0) && a >= b ) {
+                        data[j + 1] = data[j];
+                        j = j - 1;
+                    }
+                    data[j + 1] = aux;
+                }
+        }
+        clients.add(new Client(id,data,counter));
+        counter++;
+    }
+
+    public void bubbleSortGames(String inf){
+        String[] info = inf.split(" ");
+        String id = info[0];
+        String[] data = Arrays.copyOfRange(info, 1, info.length);
+        int n = data.length;
+        if(n==1){
+            data[0]+=" "+whichShelf(data[0]);
+        }
+        else{
+            for (int i = 0; i < n-1; i++) {
+                for (int j = 0; j < n - i - 1; j++) {
+                    int a = whichShelf(data[j]);
+                    data[j]+=" "+a;
+                    int b = whichShelf(data[j+1]);
+                    data[j+1]+=" "+b;
+                    if (a >= b) {
+                        String temp = data[j];
+                        data[j] = data[j + 1];
+                        data[j + 1] = temp;
+                    }
+                }
+            }
+        }
+        clients.add(new Client(id,data,counter));
+        counter++;
+    }
 
     public void clientsGetGames(){
         for(int i=0;i<clients.size();i++){

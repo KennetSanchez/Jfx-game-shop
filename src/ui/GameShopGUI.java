@@ -273,7 +273,15 @@ public class GameShopGUI<CLIENTS_tcName> {
         String games = CLIENTS_txtGames.getText();
 
         if((!id.equals("") && (!games.equals("") ) && selectedAlgorithm != 0)){
-            gs.addCostumer(id, games, selectedAlgorithm);
+            String info = id+" "+games;
+            switch (selectedAlgorithm){
+                case 1:
+                    gs.insertionSortGames(info);
+                    break;
+                case 2:
+                    gs.bubbleSortGames(info);
+                    break;
+            }
             refreshCostumers();
             CLIENTS_txtId.setText("");
             CLIENTS_txtGames.setText("");
