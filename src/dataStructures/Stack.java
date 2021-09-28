@@ -65,4 +65,12 @@ public class Stack<T> implements StackInterface<T> {
                 stackAmount++;
         }
     }
+
+    public int getStackAmount() {
+        return stackAmount;
+    }
+
+    public void setStackAmount(int stackAmount) {
+        this.stackAmount = stackAmount;
+    }
 }

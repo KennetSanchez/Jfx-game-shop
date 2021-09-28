@@ -19,6 +19,8 @@ public class GameShop {
     private Cashier[] cashiers;
     private ArrayList<Game> shelfGames;
 
+
+
     public GameShop(){
         shelvesAL= new ArrayList<>();
         primeF = new NearestPrimeFinder();
@@ -44,6 +46,9 @@ public class GameShop {
         Shelf newShelf = new Shelf(id, size, getPrimeF());
         shelvesAL.add(newShelf);
     }
+    public void addShelf(Shelf<String,Game> s){
+        shelvesAL.add(s);
+    }
 
     public void addCashiers(int size){
         cashiers=new Cashier[size];
@@ -59,6 +64,7 @@ public class GameShop {
                 return i;
             }
         }
+        System.out.println("aca");
         return -1;
     }
 
@@ -300,7 +306,18 @@ public class GameShop {
         this.shelvesAL = shelvesAL;
     }
 
+    public Cashier[] getCashiers() {
+        return cashiers;
+    }
+
+    public void setCashiers(Cashier[] cashiers) {
+        this.cashiers = cashiers;
+    }
     public ArrayList<Client> getCostumers (){
         return clients;
+    }
+
+    public Queue<Client> getClientsQueue() {
+        return clientsQueue;
     }
 }
