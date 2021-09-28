@@ -55,6 +55,10 @@ public class GameShopGUI<CLIENTS_tcName> {
     }
     // ------------------------------------------------------------ INITIAL CONDITIONS CODE ------------------------------------------------------------
 
+    int testCases = 0;
+    int cashiers = 0;
+    int shelves = 0;
+
     @FXML
     private TextField INITIALCONDITIONS_txtTestCases;
 
@@ -71,9 +75,7 @@ public class GameShopGUI<CLIENTS_tcName> {
 
     @FXML
     void INITIALCONDITIONS_done(ActionEvent event) throws IOException {
-        int testCases = 0;
-        int cashiers = 0;
-        int shelves = 0;
+
 
         try{
             testCases = Integer.parseInt(INITIALCONDITIONS_txtTestCases.getText());
@@ -108,10 +110,11 @@ public class GameShopGUI<CLIENTS_tcName> {
     }
 
     @FXML
-    void MENU_start(ActionEvent event) {
+    void MENU_start(ActionEvent event) throws IOException {
         gs.clientsGetGames();
         gs.createQueue();
         gs.serveClients();
+        showResults();
         System.out.println("\n" + gs.showClientsResult());
     }
 
@@ -161,12 +164,12 @@ public class GameShopGUI<CLIENTS_tcName> {
     }
 
     @FXML
-    void SHELVES_addGame(ActionEvent event) {
+    void SHELVES_addGame(ActionEvent event) throws IOException {
         String code = SHELVES_txtGameId.getText();
         String sPrice = SHELVES_txtGamePrice.getText();
         String sAmount = SHELVES_txtGameAmount.getText();
 
-        try{
+        //try{
             double price = Double.parseDouble(sPrice);
             int gameAmount = Integer.parseInt(sAmount);
 
@@ -175,12 +178,14 @@ public class GameShopGUI<CLIENTS_tcName> {
                 SHELVES_txtGameAmount.setText("");
                 SHELVES_txtGameId.setText("");
                 SHELVES_txtGamePrice.setText("");
+                refreshGames();
             }else{
-                missingInfo();
+               // missingInfo();
             }
-        }catch(Exception e){
-            wrongFormat();
-        }
+       // }catch(Exception e){
+          //  System.out.println(e);
+            //wrongFormat();
+        //}
 
 
     }
@@ -223,7 +228,16 @@ public class GameShopGUI<CLIENTS_tcName> {
 
     @FXML
     void SHELVES_addCostumers(ActionEvent event) throws IOException {
-        showCostumers();
+        if(SHELVES_tvShelves.getItems().size() == shelves){
+            showCostumers();
+        }else{
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Something went wrong");
+            alert.setHeaderText("The shelves aren't enough");
+            alert.setContentText("More shelves are expected, add more and try again");
+            alert.show();
+        }
+
     }
     // ------------------------------------------------------------ COSTUMERS CODE ------------------------------------------------------------
 
@@ -298,6 +312,20 @@ public class GameShopGUI<CLIENTS_tcName> {
         showMenu();
     }
 
+    // ------------------------------------------------------------  RESULTS CODE ------------------------------------------------------------
+
+
+    @FXML
+    private TableView<Client> RESULTS_tvCostumer;
+
+    @FXML
+    private TableColumn<Client, String> RESULTS_tcId;
+
+    @FXML
+    private TableColumn<Client, Integer> RESULTS_tcPaid;
+
+    @FXML
+    private TableColumn<Client, String> RESULTS_tcGamesBuyed;
 
     // ------------------------------------------------------------ SHOW WINDOWS CODE ------------------------------------------------------------
 
@@ -312,6 +340,13 @@ public class GameShopGUI<CLIENTS_tcName> {
         popupStage.hide();
         mainStage.show();
 
+        if(testCases != 0 && cashiers != 0 && shelves != 0){
+            INITIALCONDITIONS_txtCashiers.setText(cashiers + "");
+            INITIALCONDITIONS_txtTestCases.setText(testCases + "");
+            INITIALCONDITIONS_txtShelves.setText(shelves + "");
+        }
+
+
     }
 
     private void showMenu() throws IOException {
@@ -320,8 +355,8 @@ public class GameShopGUI<CLIENTS_tcName> {
         Parent root = loader.load();
         Scene e = new Scene(root);
         mainStage.setScene(e);
-        popupStage.hide();
-        mainStage.show();
+        popupStage.show();
+        mainStage.hide();
 
     }
 
@@ -347,13 +382,14 @@ public class GameShopGUI<CLIENTS_tcName> {
     }
 
     private void refreshGames() throws IOException{
-        //if(selectedShelf.getGames() != null) {
-            //ObservableList<Game> games = FXCollections.observableList(selectedShelf.getGames());
-            //SHELVES_tvGames.setItems(games);
-        //}
+        selectedShelf = gs.getShelvesAL().get(0);
+        if((gs.getGamesAL(selectedShelf)).size() > 0) {
+            ObservableList<Game> games = FXCollections.observableList(gs.getGamesAL(selectedShelf));
+            SHELVES_tvGames.setItems(games);
+        }
 
         SHELVES_tcGameId.setCellValueFactory(new PropertyValueFactory<Game,String>("code"));
-        SHELVES_tcGameAmount.setCellValueFactory(new PropertyValueFactory<Game, Integer>("amount"));
+        SHELVES_tcGameAmount.setCellValueFactory(new PropertyValueFactory<Game, Integer>("quantity"));
         SHELVES_tcGamePrice.setCellValueFactory(new PropertyValueFactory<Game, Double>("price"));
     }
 
@@ -377,5 +413,16 @@ public class GameShopGUI<CLIENTS_tcName> {
         CLIENTS_tcId.setCellValueFactory(new PropertyValueFactory<Client, String>("id"));
         CLIENTS_tcGames.setCellValueFactory(new PropertyValueFactory<Client, String>("gameListString"));
         CLIENTS_tcSort.setCellValueFactory(new PropertyValueFactory<Client, String>("sa"));
+    }
+
+    private void showResults() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Results.fxml"));
+        loader.setController(this);
+        Parent root = loader.load();
+        Scene e = new Scene(root);
+        popupStage.setScene(e);
+        mainStage.hide();
+        popupStage.show();
+        refreshCostumers();
     }
 }

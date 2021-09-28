@@ -1,20 +1,28 @@
 package dataStructures;
 
-public class Shelf<K,V> implements HashTableInterface<K,V>{
+import model.Game;
+
+import java.util.ArrayList;
+
+public class Shelf<K,V> implements HashTableInterface<K,V> {
     private String identifier;
     private int m;
-    private GameSpace<K,V>[] table;
+    private GameSpace<K, V>[] table;
     private int prime;
     private int size;
-    private GameSpace<K,V> deleted;
+    private GameSpace<K, V> deleted;
 
+    //This it's just for showing the games on the table views. It's not used for anything else.
+    private ArrayList<Game> gamesAL = new ArrayList<Game>();
 
 
     public Shelf(String identifier,int m,NearestPrimeFinder finder){
         this.identifier=identifier;
         this.m=m;
+
         size=0;
         table=new GameSpace[m];
+
         if(m<=2){
             prime=m;
         }
@@ -47,7 +55,7 @@ public class Shelf<K,V> implements HashTableInterface<K,V>{
         }
 
         table[hash1] = new GameSpace<>(key, value,n);
-        System.out.println(hash1);
+        //System.out.println(hash1);
         size++;
     }
 
@@ -88,5 +96,24 @@ public class Shelf<K,V> implements HashTableInterface<K,V>{
 
     public int getSize(){
         return m;
+    }
+
+    //-------------------- ArrayList getter/adder/remover -----------------------
+
+    public ArrayList<Game> getGamesAL(){
+        return gamesAL;
+    }
+
+    public void addGameToAL(Game newGame){
+        if(!gamesAL.contains(newGame)){
+            gamesAL.add(newGame);
+        }else{
+            gamesAL.remove(newGame);
+            gamesAL.add(newGame);
+        }
+    }
+
+    public void removeGameFromAL(Game gameToRemove){
+        gameToRemove.setQuantity(0);
     }
 }

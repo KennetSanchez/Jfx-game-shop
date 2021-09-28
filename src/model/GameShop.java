@@ -17,6 +17,7 @@ public class GameShop {
     private int counter;
     private Queue<Client> clientsQueue;
     private Cashier[] cashiers;
+    private ArrayList<Game> shelfGames;
 
     public GameShop(){
         shelvesAL= new ArrayList<>();
@@ -26,10 +27,17 @@ public class GameShop {
         clientsQueue=new Queue<>();
     }
 
+    public ArrayList<Game> getGamesAL(Shelf shelf){
+        shelfGames = shelf.getGamesAL();
+
+        return shelfGames;
+    }
+
     public void addGame(Shelf shelf, String code, double price, int quantity){
         Game newGame = new Game(code, price);
         newGame.setQuantity(quantity);
         shelf.insert(code,newGame, quantity);
+        shelf.addGameToAL(newGame);
     }
 
     public void addShelf(String id, int size){
