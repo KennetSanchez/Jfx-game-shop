@@ -44,7 +44,7 @@ public class Client {
         String msg = "";
 
         for(int i = 0; i < gameList.length; i++){
-            msg += (gameList[i].split(" ")[0]) + " ";
+            msg += (gameList[i].split(" ")[0]) + ", ";
         }
 
         return msg;

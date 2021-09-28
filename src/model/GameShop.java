@@ -62,7 +62,7 @@ public class GameShop {
         return -1;
     }
 
-    //¿Por qué un array si solo es un string? Lo está pasando junto forma "id games" con games -> juegos elegidos
+
     public void insertionSortGames(String[] info){
         String id = info[0];
         int i;
@@ -248,6 +248,10 @@ public class GameShop {
       }
     }
 
+    ArrayList<String> buyersId = new ArrayList<>();
+    ArrayList<Integer> buyersPrice = new ArrayList<>();
+    ArrayList<String> buyersGameList = new ArrayList<>();
+
     public String showClientsResult(){
         String info = "";
         for(int i=0;i<clients.size();i++){
@@ -255,6 +259,29 @@ public class GameShop {
             info+=clients.get(i).getFinalGameList()+"\n";
         }
         return info;
+    }
+
+    public void refreshBuyers(){
+        String info = "";
+        for(int i=0;i<clients.size();i++){
+            buyersId.add(clients.get(i).getId());
+            buyersPrice.add(clients.get(i).getPriceToPay());
+            buyersGameList.add(clients.get(i).getFinalGameList());
+        }
+    }
+
+    //----------------------------------------- GETTERS AND SETTERS FOR TABLE VIEWS -----------------------------------------
+
+    public ArrayList<String> getBuyersId(){
+        return buyersId;
+    }
+
+    public ArrayList<Integer> getBuyersPrice(){
+        return buyersPrice;
+    }
+
+    public ArrayList<String> getBuyersGameList(){
+        return buyersGameList;
     }
     //getters and setters
     public ArrayList<Shelf<String, Game>> getShelvesAL() {

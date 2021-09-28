@@ -115,7 +115,6 @@ public class GameShopGUI<CLIENTS_tcName> {
         gs.createQueue();
         gs.serveClients();
         showResults();
-        System.out.println("\n" + gs.showClientsResult());
     }
 
 
@@ -169,7 +168,7 @@ public class GameShopGUI<CLIENTS_tcName> {
         String sPrice = SHELVES_txtGamePrice.getText();
         String sAmount = SHELVES_txtGameAmount.getText();
 
-        //try{
+        try{
             double price = Double.parseDouble(sPrice);
             int gameAmount = Integer.parseInt(sAmount);
 
@@ -180,12 +179,11 @@ public class GameShopGUI<CLIENTS_tcName> {
                 SHELVES_txtGamePrice.setText("");
                 refreshGames();
             }else{
-               // missingInfo();
+                missingInfo();
             }
-       // }catch(Exception e){
-          //  System.out.println(e);
-            //wrongFormat();
-        //}
+       }catch(Exception e){
+            wrongFormat();
+        }
 
 
     }
@@ -211,10 +209,11 @@ public class GameShopGUI<CLIENTS_tcName> {
     }
 
     @FXML
-    void SHELVES_pickAShelf(MouseEvent event) {
+    void SHELVES_pickAShelf(MouseEvent event) throws IOException {
         if(event.getClickCount() == 2){
             if(SHELVES_tvShelves.getSelectionModel().getSelectedItem() != null) {
                 selectedShelf = SHELVES_tvShelves.getSelectionModel().getSelectedItem();
+                refreshGames();
             }else{
                 Alert alert = new Alert(AlertType.ERROR);
                 alert.setTitle("Error!");
@@ -355,8 +354,8 @@ public class GameShopGUI<CLIENTS_tcName> {
         Parent root = loader.load();
         Scene e = new Scene(root);
         mainStage.setScene(e);
-        popupStage.show();
-        mainStage.hide();
+        popupStage.hide();
+        mainStage.show();
 
     }
 
@@ -423,6 +422,18 @@ public class GameShopGUI<CLIENTS_tcName> {
         popupStage.setScene(e);
         mainStage.hide();
         popupStage.show();
-        refreshCostumers();
+        refreshResults();
+    }
+
+    private void refreshResults()throws IOException{
+
+        if(gs.getCostumers().size() > 0) {
+            ObservableList<Client> costumers = FXCollections.observableList(gs.getCostumers());
+            RESULTS_tvCostumer.setItems(costumers);
+        }
+
+        RESULTS_tcId.setCellValueFactory(new PropertyValueFactory<Client, String>("id"));
+        RESULTS_tcPaid.setCellValueFactory(new PropertyValueFactory<Client, Integer>("priceToPay"));
+        RESULTS_tcGamesBuyed.setCellValueFactory(new PropertyValueFactory<Client, String>("gameListString"));
     }
 }
