@@ -7,10 +7,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="553.0" prefWidth="888.0" style="-fx-background-color: #232946;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button contentDisplay="RIGHT" layoutX="383.0" layoutY="224.0" mnemonicParsing="false" onAction="#MENU_setConditions" prefHeight="31.0" prefWidth="122.0" style="-fx-background-color: #eebbc3; -fx-background-radius: 20;" text="Go" textFill="#232946">
+      <Button contentDisplay="RIGHT" layoutX="383.0" layoutY="240.0" mnemonicParsing="false" onAction="#MENU_setConditions" prefHeight="31.0" prefWidth="122.0" style="-fx-background-color: #eebbc3; -fx-background-radius: 20;" text="Edit" textFill="#232946">
          <font>
             <Font name="Verdana Bold" size="15.0" />
          </font>
@@ -22,19 +21,19 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button contentDisplay="RIGHT" layoutX="673.0" layoutY="441.0" mnemonicParsing="false" onAction="#MENU_start" prefHeight="31.0" prefWidth="122.0" style="-fx-background-color: #eebbc3; -fx-background-radius: 20;" text="Go" textFill="#232946">
+      <Button contentDisplay="RIGHT" layoutX="673.0" layoutY="460.0" mnemonicParsing="false" onAction="#MENU_start" prefHeight="31.0" prefWidth="122.0" style="-fx-background-color: #eebbc3; -fx-background-radius: 20;" text="Go" textFill="#232946">
          <font>
             <Font name="Verdana Bold" size="15.0" />
          </font>
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Icons/Cart.png" />
+                  <Image url="@../../Icons/Bag.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <Button contentDisplay="RIGHT" layoutX="113.0" layoutY="443.0" mnemonicParsing="false" onAction="#MENU_close" prefHeight="31.0" prefWidth="122.0" style="-fx-background-color: #eebbc3; -fx-background-radius: 20;" text="Go" textFill="#232946">
+      <Button contentDisplay="RIGHT" layoutX="113.0" layoutY="463.0" mnemonicParsing="false" onAction="#MENU_close" prefHeight="31.0" prefWidth="122.0" style="-fx-background-color: #eebbc3; -fx-background-radius: 20;" text="Turn off" textFill="#232946">
          <font>
             <Font name="Verdana Bold" size="15.0" />
          </font>
@@ -46,20 +45,35 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label layoutX="320.0" layoutY="35.0" prefHeight="19.0" prefWidth="248.0" text="Set/change initial conditions" textFill="#b8c1ec">
+      <Label layoutX="351.0" layoutY="35.0" prefHeight="19.0" prefWidth="186.0" text="Set/change cashiers" textFill="#b8c1ec">
          <font>
             <Font name="Verdana Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="713.0" layoutY="286.0" prefHeight="19.0" prefWidth="55.0" text="Start" textFill="#b8c1ec">
+      <Label layoutX="713.0" layoutY="267.0" prefHeight="19.0" prefWidth="55.0" text="Start" textFill="#b8c1ec">
          <font>
             <Font name="Verdana Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="124.0" layoutY="286.0" prefHeight="19.0" prefWidth="100.0" text="Shut down" textFill="#b8c1ec">
+      <Label layoutX="124.0" layoutY="267.0" prefHeight="19.0" prefWidth="100.0" text="Shut down" textFill="#b8c1ec">
          <font>
             <Font name="Verdana Bold" size="15.0" />
          </font>
       </Label>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="378.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Icons/Edit.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="138.0" fitWidth="128.0" layoutX="110.0" layoutY="311.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Icons/TurnOff.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="132.0" layoutX="662.0" layoutY="296.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Icons/Cart.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

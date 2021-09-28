@@ -55,18 +55,14 @@ public class GameShopGUI<CLIENTS_tcName> {
     }
     // ------------------------------------------------------------ INITIAL CONDITIONS CODE ------------------------------------------------------------
 
-    int testCases = 0;
     int cashiers = 0;
-    int shelves = 0;
 
-    @FXML
-    private TextField INITIALCONDITIONS_txtTestCases;
+
 
     @FXML
     private TextField INITIALCONDITIONS_txtCashiers;
 
-    @FXML
-    private TextField INITIALCONDITIONS_txtShelves;
+
 
     @FXML
     void INITIALCONDITIONS_cancel(ActionEvent event) throws IOException {
@@ -78,12 +74,10 @@ public class GameShopGUI<CLIENTS_tcName> {
 
 
         try{
-            testCases = Integer.parseInt(INITIALCONDITIONS_txtTestCases.getText());
             cashiers = Integer.parseInt(INITIALCONDITIONS_txtCashiers.getText());
-            shelves = Integer.parseInt(INITIALCONDITIONS_txtShelves.getText());    
 
             gs.addCashiers(cashiers);
-            if(testCases == 0 || cashiers == 0 || shelves == 0 ){
+            if(cashiers == 0 ){
                 missingInfo();
             }else{
                 showShelves();
@@ -227,17 +221,9 @@ public class GameShopGUI<CLIENTS_tcName> {
 
     @FXML
     void SHELVES_addCostumers(ActionEvent event) throws IOException {
-        if(SHELVES_tvShelves.getItems().size() == shelves){
             showCostumers();
-        }else{
-            Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("Something went wrong");
-            alert.setHeaderText("The shelves aren't enough");
-            alert.setContentText("More shelves are expected, add more and try again");
-            alert.show();
-        }
-
     }
+
     // ------------------------------------------------------------ COSTUMERS CODE ------------------------------------------------------------
 
     int selectedAlgorithm = 0;
@@ -339,10 +325,8 @@ public class GameShopGUI<CLIENTS_tcName> {
         popupStage.hide();
         mainStage.show();
 
-        if(testCases != 0 && cashiers != 0 && shelves != 0){
+        if(cashiers != 0){
             INITIALCONDITIONS_txtCashiers.setText(cashiers + "");
-            INITIALCONDITIONS_txtTestCases.setText(testCases + "");
-            INITIALCONDITIONS_txtShelves.setText(shelves + "");
         }
 
 
@@ -381,11 +365,8 @@ public class GameShopGUI<CLIENTS_tcName> {
     }
 
     private void refreshGames() throws IOException{
-        selectedShelf = gs.getShelvesAL().get(0);
-        if((gs.getGamesAL(selectedShelf)).size() > 0) {
-            ObservableList<Game> games = FXCollections.observableList(gs.getGamesAL(selectedShelf));
-            SHELVES_tvGames.setItems(games);
-        }
+        ObservableList<Game> games = FXCollections.observableList(gs.getGamesAL(selectedShelf));
+        SHELVES_tvGames.setItems(games);
 
         SHELVES_tcGameId.setCellValueFactory(new PropertyValueFactory<Game,String>("code"));
         SHELVES_tcGameAmount.setCellValueFactory(new PropertyValueFactory<Game, Integer>("quantity"));
