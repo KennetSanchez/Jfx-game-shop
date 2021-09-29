@@ -98,6 +98,13 @@ public class Shelf<K,V> implements HashTableInterface<K,V> {
         return m;
     }
 
+    public GameSpace<K, V>[] getTable() {
+        return table;
+    }
+
+    public void setTable(GameSpace<K, V>[] table) {
+        this.table = table;
+    }
     //-------------------- ArrayList getter/adder/remover -----------------------
 
     public ArrayList<Game> getGamesAL(){
@@ -116,4 +123,5 @@ public class Shelf<K,V> implements HashTableInterface<K,V> {
     public void removeGameFromAL(Game gameToRemove){
         gameToRemove.setQuantity(0);
     }
+
 }
