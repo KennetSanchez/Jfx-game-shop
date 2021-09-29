@@ -1,15 +1,14 @@
 package dataStructures;
 
-import dataStructures.NearestPrimeFinder;
-import dataStructures.Shelf;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ShelfTest {
     String key;
     int value;
     NearestPrimeFinder primeFinder = new NearestPrimeFinder();
-    Shelf<String,Integer> testShelf=new Shelf<>("a",5,primeFinder);;
+    Shelf<String,Integer> testShelf=new Shelf<>("a",5,primeFinder);
 
     public void shelfTestScene1(){
         key="llave";
@@ -31,5 +30,5 @@ public class ShelfTest {
         assertEquals(null,testShelf.delete(key));
 
     }
-            //scene
+
 }

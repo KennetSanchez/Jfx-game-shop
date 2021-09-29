@@ -18,19 +18,16 @@ import model.Client;
 import model.Game;
 import model.GameShop;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
-public class GameShopGUI<CLIENTS_tcName> {
+public class GameShopGUI{
 
     Stage mainStage;
     Stage popupStage;
-    BufferedReader br;
+
     GameShop gs;
 
     public GameShopGUI() {
-        br = new BufferedReader(new InputStreamReader(System.in));
         gs = new GameShop();
 
         mainStage = new Stage();
